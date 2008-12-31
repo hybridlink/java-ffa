@@ -1,4 +1,4 @@
-package org.wisdomfish.financial;
+package org.wisdomfish.finance;
 
 /**
  * 投資計算函數可分為與未來值fv有關，與付款pmt有關，與現值pv有關，

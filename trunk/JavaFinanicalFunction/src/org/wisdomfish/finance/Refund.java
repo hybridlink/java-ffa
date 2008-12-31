@@ -1,4 +1,4 @@
-package org.wisdomfish.financial;
+package org.wisdomfish.finance;
 
 /**
  * 償還率計算函數主要用以計算內部收益率，包括IRR、MIRR、RATE和XIRR幾個函數。

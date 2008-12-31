@@ -21,10 +21,10 @@ public class AnalysisOfSTRA {
      * 
      * @param   currentAssets       流動資產
      * @param   currentLiability    流動負債
-     * @return  回傳已格式化帶'%'符字串
+     * @return  回傳未包含"%"字元符的百分比數值
      */
-    public static String currentRatio(double currentAssets, double currentLiability) {
-        Double currentR = currentAssets / currentLiability * 100;
-        return currentR.toString() + "%";
+    public static double currentRatio(double currentAssets, double currentLiability) {
+        double currentR = currentAssets / currentLiability * 100;
+        return currentR;
     }
 }
