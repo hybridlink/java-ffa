@@ -1,4 +1,4 @@
-package org.wisdomfish.financial;
+package org.wisdomfish.finance;
 
 /**
  * 折舊計算函數主要包括AMORDEGRC、AMORLINC、DB、DDB、SLN、SYD、VDB。
