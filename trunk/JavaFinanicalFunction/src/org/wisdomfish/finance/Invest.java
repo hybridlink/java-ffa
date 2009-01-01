@@ -1,5 +1,7 @@
 package org.wisdomfish.finance;
 
+import org.wisdomfish.common.CommonConstants;
+
 /**
  * 投資計算函數可分為與未來值FV有關，與付款PMT有關，與現值PV有關，
  * 與複利計算有關及與期間數有關幾類函數：
@@ -11,29 +13,35 @@ package org.wisdomfish.finance;
  *  <li>與期間數有關的函數 - NPER</li>
  * </ul>
  *
- * @version 0.1
- * @author  ChaoYi, Kuo (Taiwan:郭朝益)
+ * @version 0.1-dev
+ * @author  ChaoYi, Kuo (Taiwan: 郭朝益)
  *
  */
-public final class Invest {
-
-    /**
-     * 給付時間點為每期的開始支付
-     */
-    public static final int AT_BEGINNING_OF_PERIOD = 0;
-    /**
-     * 給付時間點為每期的期末支付
-     */
-    public static final int AT_END_OF_PERIOD = 1;
-
-    public static final double UN_RATE= 0.01;
+public final class Invest implements CommonConstants {
 
     private Invest() {
     }
 
+    /**
+     * Effective annual interest rate -
+     * 依據給定的 nominal 年利率以及每年以複利計算利息的期間之次數，傳回實際的年利率。
+     * <p>
+     * 如果 nominalRate = 0 或 nPerYear < 1，EFFECT 將傳回錯誤碼值: ERROR_ARGS 。
+     * </p>
+     * 
+     * @param nominalRate   為名義(nominal)利率。
+     * @param nPerYear      為每年以複利計算之期數。
+     * @return              傳回"實際"的年利率值(未帶"%"符)。
+     * @see CommonConstants#ERROR_ARGS
+     */
     public static double EFFECT(double nominalRate, int nPerYear) {
-        nominalRate = nominalRate * UN_RATE;
-        return Math.pow((1 + (nominalRate / nPerYear)), nPerYear) - 1;
+        if (nominalRate == 0 || nPerYear < 1) {
+            return ERROR_ARGS;
+        } else {
+            nominalRate = nominalRate * UN_RATE;
+            return (Math.pow((1 + (nominalRate / nPerYear)), nPerYear) - 1) / UN_RATE;
+        }
+
     }
 
     /**
