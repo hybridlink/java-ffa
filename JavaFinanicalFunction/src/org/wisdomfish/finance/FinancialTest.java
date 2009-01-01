@@ -17,6 +17,7 @@ class FinancialTest {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Invest.EFFECT() = " + Invest.EFFECT(5.25, 4));
+        System.out.println("Invest.EFFECT() = " + Invest.EFFECT(2, -2));
     }
 
 }
