@@ -24,14 +24,16 @@ public final class Invest implements CommonConstants {
 
     /**
      * Effective annual interest rate -
-     * 依據給定的 nominal 年利率以及每年以複利計算利息的期間之次數，傳回實際的年利率。
-     * <p>
-     * 如果 nominalRate = 0 或 nPerYear < 1，EFFECT 將傳回錯誤碼值: ERROR_ARGS 。
-     * </p>
+     * 依據給定的 nominal 年利率以及每年以複利計算利息的期間之次數，傳回實際的年利率。.
+     * <ul>
+     *  <li>如果 nominalRate = 0 或 nPerYear < 1，EFFECT 將傳回錯誤碼值: ERROR_ARGS。</li>
+     *  <li>NOMINAL 與 EFFECT 有關</li>
+     * </ul>
      * 
      * @param nominalRate   為名義(nominal)利率。
      * @param nPerYear      為每年以複利計算之期數。
      * @return              傳回"實際"的年利率值(未帶"%"符)。
+     * @see Invest#NOMINAL(double, int)
      * @see CommonConstants#ERROR_ARGS
      */
     public static double EFFECT(double nominalRate, int nPerYear) {
@@ -65,23 +67,36 @@ public final class Invest implements CommonConstants {
      * @param type  為 0 或 1 的數值，用以界定各期金額的給付時點。
      * @return      回傳投資的未來價值。
      */
-    public static double FV(double rate, int NPER, double PMT, double PV, int type) {
+    static double FV(double rate, int NPER, double PMT, double PV, int type) {
         return -1;
     }
 
-    public static double FV(double rate, int NPER, double PMT, int type) {
+    static double FV(double rate, int NPER, double PMT, int type) {
         double PV = 0;
         return -1;
     }
 
-    public static double FV(double rate, int NPER, double PMT, double PV) {
+    static double FV(double rate, int NPER, double PMT, double PV) {
         int type = AT_BEGINNING_OF_PERIOD;
         return -1;
     }
 
     /**
+     * 複利(Compound interest)終值單筆(Single)
+     * 
+     * @param presentValue  單一筆數本金現值
+     * @param interestRate  年利率/報酬率
+     * @param nPeriods      期數
+     * @return              回傳本金的未來價值
+     */
+    public static double FVS(double presentValue, double interestRate, int nPeriods) {
+        interestRate = interestRate * UN_RATE;
+        return (presentValue * (Math.pow((1.0 + interestRate), nPeriods)));
+    }
+
+    /**
      * Nominal interest rate -　在給定有效利率以及每年以複利計算的期間的情況下，
-     * 傳回 nominal 年利率。
+     * 傳回 nominal 年利率。.
      * <ul>
      *  <li>如果 effectRate = 0 或 nPerYear < 1，EFFECT 將傳回錯誤碼值: ERROR_ARGS 。</li>
      *  <li>NOMINAL 與 EFFECT 有關</li>
@@ -98,7 +113,7 @@ public final class Invest implements CommonConstants {
             return ERROR_ARGS;
         } else {
             effectRate = effectRate * UN_RATE;
-            return ((Math.pow((1.0 + effectRate), (1.0/nPerYear)) - 1.0) * nPerYear) / UN_RATE;
+            return ((Math.pow((1.0 + effectRate), (1.0 / nPerYear)) - 1.0) * nPerYear) / UN_RATE;
         }
     }
 
@@ -111,7 +126,7 @@ public final class Invest implements CommonConstants {
      * @param type
      * @return
      */
-    public static double PMT(double rate, int NPER, double PV, double FV, int type) {
+    static double PMT(double rate, int NPER, double PV, double FV, int type) {
         return -1;
     }
 
@@ -124,7 +139,20 @@ public final class Invest implements CommonConstants {
      * @param type
      * @return
      */
-    public static double PV(double rate, int NPER, double PMT, double FV, int type) {
+    static double PV(double rate, int NPER, double PMT, double FV, int type) {
         return -1;
+    }
+
+    /**
+     * 複利(Compound interest)現值單筆(Single)
+     *
+     * @param futureValue   單一筆數本金未來值
+     * @param interestRate  年利率(報酬率)
+     * @param nPeriods      期數
+     * @return              回傳本金的現在價值
+     */
+    public static double PVS(double futureValue, double interestRate, int nPeriods) {
+        interestRate = interestRate * UN_RATE;
+        return (futureValue / (Math.pow((1.0 + interestRate), nPeriods)));
     }
 }

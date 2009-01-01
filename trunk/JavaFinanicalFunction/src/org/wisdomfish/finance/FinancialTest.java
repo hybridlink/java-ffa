@@ -20,6 +20,9 @@ class FinancialTest {
         System.out.println("Invest.EFFECT() = " + Invest.EFFECT(2, -2));
         System.out.println("Invest.NOMINAL() = " + Invest.NOMINAL(5.3343, 4));
         System.out.println("Invest.NOMINAL() = " + Invest.NOMINAL(0, 4));
+        System.out.println("Invest.FVS() = " + Invest.FVS(1000, 4, 10));
+        System.out.println("Invest.PVS() = " + Invest.PVS(1, 5, 10)); // 精確度不夠
+
 
     }
 
