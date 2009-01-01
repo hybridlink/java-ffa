@@ -12,7 +12,7 @@ import java.util.Date;
  *  <li>證券價格表示有關的函數</li>
  * </ul>
  * 
- * @author  ChaoYi ,Kuo
+ * @author  ChaoYi ,Kuo (Taiwan:郭朝益)
  * @version 0.1
  * @since http://sites.google.com/site/wisdomfishaccounting/java-accounting-api
  * 
