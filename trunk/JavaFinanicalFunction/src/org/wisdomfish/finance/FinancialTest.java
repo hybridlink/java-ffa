@@ -18,6 +18,9 @@ class FinancialTest {
         // TODO code application logic here
         System.out.println("Invest.EFFECT() = " + Invest.EFFECT(5.25, 4));
         System.out.println("Invest.EFFECT() = " + Invest.EFFECT(2, -2));
+        System.out.println("Invest.NOMINAL() = " + Invest.NOMINAL(5.3343, 4));
+        System.out.println("Invest.NOMINAL() = " + Invest.NOMINAL(0, 4));
+
     }
 
 }
