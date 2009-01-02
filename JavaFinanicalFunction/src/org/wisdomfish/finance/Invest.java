@@ -1,6 +1,8 @@
 package org.wisdomfish.finance;
 
+import java.util.GregorianCalendar;
 import org.wisdomfish.common.CommonConstants;
+import org.wisdomfish.common.DayCountBasis;
 
 /**
  * 投資計算函數可分為與未來值FV有關，與付款PMT有關，與現值PV有關，
@@ -17,7 +19,8 @@ import org.wisdomfish.common.CommonConstants;
  * @author  ChaoYi, Kuo (Taiwan: 郭朝益)
  *
  */
-public final class Invest implements CommonConstants {
+public final class Invest
+        implements CommonConstants, DayCountBasis {
 
     private Invest() {
     }
@@ -47,8 +50,8 @@ public final class Invest implements CommonConstants {
     }
 
     /**
-     * <p>Future Value - 根據週期、固定支出以及固定利率，傳回投資的未來值。</p>
-     * <p>有關 FV 引數以及年金函數的更詳細資訊，請參閱 PV。</p>
+     * 年金(Future Value) - 根據週期、固定支出以及固定利率，傳回投資的未來值。.
+     * <p>有關 FV 參數以及年金函數的更詳細資訊，請參閱 PV。</p>
      * <ul>
      *  <li>rate    為各期的利率。</li>
      *  <li>NPER    為年金的總付款期數。</li>
@@ -56,29 +59,66 @@ public final class Invest implements CommonConstants {
      *              但不包含其他的費用或稅款。如果忽略 pmt，則您必須包含 pv 引數。</li>
      *  <li>PV      係指現值或一系列未來付款的目前總額。如果您省略 pv，則假設為 0 (零)，
      *              並且您必須包含 pmt 引數。</li>
-     *  <li>type    為 0 或 1 的數值，用以界定各期金額的給付時點。如果省略 type，
-     *              則假設其值為 0。</li>
+     *  <li>whenType    為普通年金(0)或即付年金(1)的數值，用以界定各期金額的給付時點。
+     *                  如果省略 WhenType，則假設其值為 0。</li>
      * </ul>
      *
-     * @param rate  為各期的利率。
-     * @param NPER  為年金的總付款期數。
-     * @param PMT   係指分期付款。
-     * @param PV    係指現值或一系列未來付款的目前總額。
-     * @param type  為 0 或 1 的數值，用以界定各期金額的給付時點。
-     * @return      回傳投資的未來價值。
+     * @param rate      為各期的利率(預設為年利率)。
+     * @param NPER      為年金的總付款期數。
+     * @param PMT       係指分期付款。
+     * @param PV        係指現值或一系列未來付款的目前總額。
+     * @param whenType  為期未(0)或期初(1)的數值，用以界定各期金額的給付時點。
+     * @return          回傳投資的未來價值。
      */
-    static double FV(double rate, int NPER, double PMT, double PV, int type) {
+    public static double FV(double rate, int NPER, double PMT, double PV, int whenType) {
+        if (whenType >= 3 || whenType < 0) {
+            return ERROR_ARGS;
+        }
+        rate = rate * UN_RATE;
+        double fv = 0.0;
+        if (rate == 0.0) {
+            //  FV = -1(PV+PMT*NPER)
+            fv = -1 * (PV + PMT * NPER);
+            return fv;
+        } else {
+            switch (whenType) {
+                // 普通年金終值：F=A{[（1+i）^n-1]/i}
+                case AT_END_OF_PERIOD:
+                    fv = PMT * ((Math.pow((1.0 + rate), NPER) - 1.0) / rate);
+                    break;
+                // 即付年金的終值：F=A{[（1+i）^（n+1）-1]/i}
+                case AT_BEGINNING_OF_PERIOD:
+                    fv = PMT * ((Math.pow((1.0 + rate), (NPER + 1)) - 1.0) / rate);
+                    break;
+            }
+            // Yt=PV*(1-Pmt)^t*(1+r)^t
+            // FV = (PMT*(1+rate*type)*(1-(1+ rate)^NPER)/rate)-PV*(1+rate)^NPER
+//            fv = PMT * (1.0 + rate * whenType);
+//            fv = fv * ((1.0 - (Math.pow((1.0 + rate), NPER))) / rate);
+//            fv = fv - (PV * Math.pow((1.0 + rate), NPER));
+            return fv;
+        }
+    }
+
+    private static double FV(double rate, int NPER, double PMT, int whenType) {
         return -1;
     }
 
-    static double FV(double rate, int NPER, double PMT, int type) {
-        double PV = 0;
-        return -1;
-    }
-
-    static double FV(double rate, int NPER, double PMT, double PV) {
-        int type = AT_BEGINNING_OF_PERIOD;
-        return -1;
+    private static double FV(double rate, int NPER, double PMT, double PV) {
+        int whenType = AT_END_OF_PERIOD;
+        rate = rate * UN_RATE;
+        double fv = 0.0;
+        if (rate == 0.0) {
+            //  FV = -1(PV+PMT*NPER)
+            fv = -1 * (PV + PMT * NPER);
+            return fv;
+        } else {
+            // FV = (PMT*(1+rate*type)*(1-(1+ rate)^NPER)/rate)-PV*(1+rate)^NPER
+            fv = PMT * (1.0 + rate * whenType);
+            fv = fv * ((1.0 - (Math.pow((1.0 + rate), NPER))) / rate);
+            fv = fv - (PV * Math.pow((1.0 + rate), NPER));
+            return fv;
+        }
     }
 
     /**
@@ -154,5 +194,9 @@ public final class Invest implements CommonConstants {
     public static double PVS(double futureValue, double interestRate, int nPeriods) {
         interestRate = interestRate * UN_RATE;
         return (futureValue / (Math.pow((1.0 + interestRate), nPeriods)));
+    }
+
+    public int getDaysBetween(GregorianCalendar initialDate, GregorianCalendar finalDate) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
