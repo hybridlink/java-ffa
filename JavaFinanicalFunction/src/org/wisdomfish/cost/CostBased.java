@@ -6,8 +6,10 @@
 package org.wisdomfish.cost;
 
 /**
+ * 成本計價基礎.
  *
- * @author  ChaoYi, Kuo (Taiwan:郭朝益)
+ * @version 0.1-dev, 2009-01
+ * @author  ChaoYi, Kuo (Taiwan: 郭朝益)
  */
 public class CostBased {
 

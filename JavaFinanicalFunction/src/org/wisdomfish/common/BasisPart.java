@@ -10,8 +10,8 @@ import java.util.Date;
 /**
  * 定義需要使用到日期計算值的函數必需要實作的介面.
  *
- * @version 0.1
- * @author ChaoYi, Kuo (Taiwan:郭朝益)
+ * @version 0.1-dev, 2009-01
+ * @author  ChaoYi, Kuo (Taiwan: 郭朝益)
  */
 public interface BasisPart {
 

@@ -3,6 +3,7 @@ package org.wisdomfish.finance;
 import java.util.Date;
 
 /**
+ * 提供債券及其他金融函數相關的函數類別.
  * <ul>債券及其他金融函數可分為:
  *  <li>計算本金、利息的函數</li>
  *  <li>利息支付時間有關的函數</li>
@@ -12,8 +13,8 @@ import java.util.Date;
  *  <li>證券價格表示有關的函數</li>
  * </ul>
  * 
- * @author  ChaoYi ,Kuo (Taiwan:郭朝益)
- * @version 0.1
+ * @author  ChaoYi ,Kuo (Taiwan: 郭朝益)
+ * @version 0.1-dev, 01-2009
  * @since http://sites.google.com/site/wisdomfishaccounting/java-accounting-api
  * 
  */
