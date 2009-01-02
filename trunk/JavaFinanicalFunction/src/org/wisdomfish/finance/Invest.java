@@ -4,11 +4,11 @@ import org.wisdomfish.common.CommonConstants;
 
 /**
  * 投資計算函數可分為與未來值FV有關，與付款PMT有關，與現值PV有關，
- * 與複利計算有關及與期間數有關幾類函數：
+ * 與複利計算有關及與期間數有關幾類函數. 包括：
  * <ul>
- *  <li>與未來值fv有關的函數 - FV、FVSCHEDULE</li>
+ *  <li>與未來值fv有關的函數 - FV、FVS、FVSCHEDULE</li>
  *  <li>與付款pmt有關的函數 - IPMT、ISPMT、PMT、PPMT</li>
- *  <li>與現值pv有關的函數 - NPV、PV、XNPV</li>
+ *  <li>與現值pv有關的函數 - NPV、PV、PVS、XNPV</li>
  *  <li>與複利計算有關的函數 - EFFECT、NOMINAL</li>
  *  <li>與期間數有關的函數 - NPER</li>
  * </ul>
@@ -87,7 +87,7 @@ public final class Invest implements CommonConstants {
      * @param presentValue  單一筆數本金現值
      * @param interestRate  年利率/報酬率
      * @param nPeriods      期數
-     * @return              回傳本金的未來價值
+     * @return              回傳單筆本金的未來價值
      */
     public static double FVS(double presentValue, double interestRate, int nPeriods) {
         interestRate = interestRate * UN_RATE;
@@ -95,8 +95,8 @@ public final class Invest implements CommonConstants {
     }
 
     /**
-     * Nominal interest rate -　在給定有效利率以及每年以複利計算的期間的情況下，
-     * 傳回 nominal 年利率。.
+     * Nominal interest rate -　在給定有效(實質)利率以及每年以複利計算的期間的情況下，
+     * 傳回名義(nominal)年利率。.
      * <ul>
      *  <li>如果 effectRate = 0 或 nPerYear < 1，EFFECT 將傳回錯誤碼值: ERROR_ARGS 。</li>
      *  <li>NOMINAL 與 EFFECT 有關</li>
@@ -149,7 +149,7 @@ public final class Invest implements CommonConstants {
      * @param futureValue   單一筆數本金未來值
      * @param interestRate  年利率(報酬率)
      * @param nPeriods      期數
-     * @return              回傳本金的現在價值
+     * @return              回傳單筆本金的現在價值
      */
     public static double PVS(double futureValue, double interestRate, int nPeriods) {
         interestRate = interestRate * UN_RATE;

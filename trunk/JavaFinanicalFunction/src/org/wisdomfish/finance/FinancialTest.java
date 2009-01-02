@@ -6,8 +6,8 @@
 package org.wisdomfish.finance;
 
 /**
- *
- * @author ChaoYi
+ * @author  ChaoYi ,Kuo (Taiwan: 郭朝益)
+ * @version 0.1-dev, 01-2009
  */
 class FinancialTest {
 

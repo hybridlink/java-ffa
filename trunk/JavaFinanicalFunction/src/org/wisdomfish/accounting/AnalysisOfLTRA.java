@@ -5,10 +5,11 @@
 package org.wisdomfish.accounting;
 
 /**
- * 長期償債能力分析(Analysis of Long-Term Repayment Ability)
+ * 長期償債能力分析(Analysis of Long-Term Repayment Ability).
  * 或稱財務結構分析(Analysis of financial structure).
- * @author  ChaoYi, Kuo (Taiwan:郭朝益)
- * @version 0.1
+ *
+ * @version 0.1-dev, 2009-01
+ * @author  ChaoYi, Kuo (Taiwan: 郭朝益)
  */
 public class AnalysisOfLTRA {
 
