@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.wisdomfish.finance;
 
 /**
@@ -22,8 +17,10 @@ class FinancialTest {
         System.out.println("Invest.NOMINAL() = " + Invest.NOMINAL(0, 4));
         System.out.println("Invest.FVS() = " + Invest.FVS(1000, 4, 10));
         System.out.println("Invest.PVS() = " + Invest.PVS(1, 5, 10)); // 精確度不夠
-        System.out.println("Invest.FV(2301.40) = " + Invest.FV(6/12, 12, -100, -1000, 1)); // 精確度不夠
+        System.out.println("Invest.FV(2301.40) = " + Invest.FV(6 / 12, 12, -100, -1000, 1)); // 精確度不夠
+
+        System.out.println("Depreciation.SLN(2250.0) = " + Depreciation.SLN(30000, 7500, 10));
+        System.out.println("Depreciation.SYD(409.9) = " + Depreciation.SYD(30000, 7500, 10, 10));
 
     }
-
 }
