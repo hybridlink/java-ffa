@@ -44,7 +44,7 @@ public final class Invest
             return ERROR_ARGS;
         } else {
             nominalRate = nominalRate * UN_RATE;
-            return (Math.pow((1.0 + (nominalRate / nPerYear)), nPerYear) - 1.0) / UN_RATE;
+            return (StrictMath.pow((1.0 + (nominalRate / nPerYear)), nPerYear) - 1.0) / UN_RATE;
         }
 
     }
@@ -84,18 +84,18 @@ public final class Invest
             switch (whenType) {
                 // 普通年金終值：F=A{[（1+i）^n-1]/i}
                 case AT_END_OF_PERIOD:
-                    fv = PMT * ((Math.pow((1.0 + rate), NPER) - 1.0) / rate);
+                    fv = PMT * ((StrictMath.pow((1.0 + rate), NPER) - 1.0) / rate);
                     break;
                 // 即付年金的終值：F=A{[（1+i）^（n+1）-1]/i}
                 case AT_BEGINNING_OF_PERIOD:
-                    fv = PMT * ((Math.pow((1.0 + rate), (NPER + 1)) - 1.0) / rate);
+                    fv = PMT * ((StrictMath.pow((1.0 + rate), (NPER + 1)) - 1.0) / rate);
                     break;
             }
             // Yt=PV*(1-Pmt)^t*(1+r)^t
             // FV = (PMT*(1+rate*type)*(1-(1+ rate)^NPER)/rate)-PV*(1+rate)^NPER
 //            fv = PMT * (1.0 + rate * whenType);
-//            fv = fv * ((1.0 - (Math.pow((1.0 + rate), NPER))) / rate);
-//            fv = fv - (PV * Math.pow((1.0 + rate), NPER));
+//            fv = fv * ((1.0 - (StrictMath.pow((1.0 + rate), NPER))) / rate);
+//            fv = fv - (PV * StrictMath.pow((1.0 + rate), NPER));
             return fv;
         }
     }
@@ -115,8 +115,8 @@ public final class Invest
         } else {
             // FV = (PMT*(1+rate*type)*(1-(1+ rate)^NPER)/rate)-PV*(1+rate)^NPER
             fv = PMT * (1.0 + rate * whenType);
-            fv = fv * ((1.0 - (Math.pow((1.0 + rate), NPER))) / rate);
-            fv = fv - (PV * Math.pow((1.0 + rate), NPER));
+            fv = fv * ((1.0 - (StrictMath.pow((1.0 + rate), NPER))) / rate);
+            fv = fv - (PV * StrictMath.pow((1.0 + rate), NPER));
             return fv;
         }
     }
@@ -131,7 +131,7 @@ public final class Invest
      */
     public static double FVS(double presentValue, double interestRate, int nPeriods) {
         interestRate = interestRate * UN_RATE;
-        return (presentValue * (Math.pow((1.0 + interestRate), nPeriods)));
+        return (presentValue * (StrictMath.pow((1.0 + interestRate), nPeriods)));
     }
 
     /**
@@ -153,7 +153,7 @@ public final class Invest
             return ERROR_ARGS;
         } else {
             effectRate = effectRate * UN_RATE;
-            return ((Math.pow((1.0 + effectRate), (1.0 / nPerYear)) - 1.0) * nPerYear) / UN_RATE;
+            return ((StrictMath.pow((1.0 + effectRate), (1.0 / nPerYear)) - 1.0) * nPerYear) / UN_RATE;
         }
     }
 
@@ -193,7 +193,7 @@ public final class Invest
      */
     public static double PVS(double futureValue, double interestRate, int nPeriods) {
         interestRate = interestRate * UN_RATE;
-        return (futureValue / (Math.pow((1.0 + interestRate), nPeriods)));
+        return (futureValue / (StrictMath.pow((1.0 + interestRate), nPeriods)));
     }
 
     public int getDaysBetween(GregorianCalendar initialDate, GregorianCalendar finalDate) {
