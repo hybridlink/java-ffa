@@ -9,9 +9,9 @@ package org.wisdomfish.common;
 public interface CommonConstants {
 
     /**
-     * 當給予參數值非該函數API要求的合法範圍值時, 回傳錯誤代碼: <b>-999.0</b>
+     * 當給予參數值非該函數API要求的合法範圍值時, 回傳錯誤代碼: <b>-999.9</b>
      */
-    public static final double ERROR_ARGS = -999.0;
+    public static final double ERROR_ARGS = -999.9;
     /**
      * JFFA中有關參數數名稱帶"rate"者, 全假定該數值為未加上"%"字元符之百分比值數,
      * 故在進行JFFA方法調用時, JFFA將於內部運算時封裝乘除本常數的轉換計算動作.

@@ -39,7 +39,7 @@ public final class Invest
      * @see Invest#NOMINAL(double, int)
      * @see CommonConstants#ERROR_ARGS
      */
-    public static double EFFECT(double nominalRate, int nPerYear) {
+    public static double effect(double nominalRate, int nPerYear) {
         if (nominalRate == 0.0 || nPerYear < 1) {
             return ERROR_ARGS;
         } else {
@@ -70,8 +70,8 @@ public final class Invest
      * @param whenType  為期未(0)或期初(1)的數值，用以界定各期金額的給付時點。
      * @return          回傳投資的未來價值。
      */
-    public static double FV(double rate, int NPER, double PMT, double PV, int whenType) {
-        if (whenType >= 3 || whenType < 0) {
+    public static double fv(double rate, int NPER, double PMT, double PV, int whenType) {
+        if (whenType != AT_BEGINNING_OF_PERIOD || whenType != AT_END_OF_PERIOD) {
             return ERROR_ARGS;
         }
         rate = rate * UN_RATE;
@@ -100,11 +100,11 @@ public final class Invest
         }
     }
 
-    private static double FV(double rate, int NPER, double PMT, int whenType) {
+    private static double fv(double rate, int NPER, double PMT, int whenType) {
         return -1;
     }
 
-    private static double FV(double rate, int NPER, double PMT, double PV) {
+    private static double fv(double rate, int NPER, double PMT, double PV) {
         int whenType = AT_END_OF_PERIOD;
         rate = rate * UN_RATE;
         double fv = 0.0;
@@ -129,9 +129,34 @@ public final class Invest
      * @param nPeriods      期數
      * @return              回傳單筆本金的未來價值
      */
-    public static double FVS(double presentValue, double interestRate, int nPeriods) {
+    public static double fvs(double presentValue, double interestRate, int nPeriods) {
         interestRate = interestRate * UN_RATE;
         return (presentValue * (StrictMath.pow((1.0 + interestRate), nPeriods)));
+    }
+
+    /**
+     * 傳回某項投資的付款方式為定期、定額及固定利率時，某一期應付利息之金額。
+     * @param rate
+     * @param period
+     * @param NPER
+     * @param PV
+     * @param FV
+     * @param whenType
+     * @return
+     */
+    public static double ipmt(
+            double rate, int period, int NPER, double PV, double FV, int whenType) {
+        if (whenType != AT_BEGINNING_OF_PERIOD || whenType != AT_END_OF_PERIOD) {
+            return ERROR_ARGS;
+        }
+        if (period < 1 || period > NPER) {
+            return ERROR_ARGS;
+        }
+
+        rate = rate * UN_RATE;
+        double ipmt = ((PV * StrictMath.pow((1 + rate), (NPER - 1)))) * rate;
+        return ipmt;
+
     }
 
     /**
@@ -148,7 +173,7 @@ public final class Invest
      * @see Invest#EFFECT(double, int)
      * @see CommonConstants#ERROR_ARGS
      */
-    public static double NOMINAL(double effectRate, int nPerYear) {
+    public static double nominal(double effectRate, int nPerYear) {
         if (effectRate == 0.0 || nPerYear < 1) {
             return ERROR_ARGS;
         } else {
@@ -166,7 +191,7 @@ public final class Invest
      * @param type
      * @return
      */
-    static double PMT(double rate, int NPER, double PV, double FV, int type) {
+    static double pmt(double rate, int NPER, double PV, double FV, int type) {
         return -1;
     }
 
@@ -179,7 +204,7 @@ public final class Invest
      * @param type
      * @return
      */
-    static double PV(double rate, int NPER, double PMT, double FV, int type) {
+    static double pv(double rate, int NPER, double PMT, double FV, int type) {
         return -1;
     }
 
@@ -191,7 +216,7 @@ public final class Invest
      * @param nPeriods      期數
      * @return              回傳單筆本金的現在價值
      */
-    public static double PVS(double futureValue, double interestRate, int nPeriods) {
+    public static double pvs(double futureValue, double interestRate, int nPeriods) {
         interestRate = interestRate * UN_RATE;
         return (futureValue / (StrictMath.pow((1.0 + interestRate), nPeriods)));
     }
