@@ -28,7 +28,6 @@ public class AnalysisOfSTRA {
      * @return  回傳未包含"%"字元符的百分比數值
      */
     public static double currentRatio(double currentAssets, double currentLiability) {
-        double currentR = currentAssets / currentLiability * 100;
-        return currentR;
+        return currentAssets / currentLiability * 100;
     }
 }

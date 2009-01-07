@@ -183,6 +183,22 @@ public final class Invest
     }
 
     /**
+     * Summary: Returns the number of periods required by an investment to realize a desired value.
+     * 6.11.35 PDURATION
+     * 
+     * @param rate
+     * @param currentValue
+     * @param desiredValue
+     * @return
+     */
+    public static double pduration(double rate, double currentValue, double desiredValue) {
+        rate = rate * UN_RATE;
+        double pudration =
+                ((StrictMath.log10(desiredValue) - StrictMath.log10(currentValue))) / (StrictMath.log10(rate));
+        return pudration;
+    }
+
+    /**
      * Periodic payment - 週期性的付款
      * @param rate
      * @param NPER
