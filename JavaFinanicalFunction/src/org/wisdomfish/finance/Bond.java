@@ -35,7 +35,7 @@ public final class Bond {
      * @param   basis 係指所採用的日計利基的類型。
      * @return  傳回定期給付利息債券所累積的利息。
      */
-    public static double ACCRINT(
+    public static double accrint(
             Date issue, Date first_interest, Date settlement,
             double rate, double par, int frequency, int basis) {
 

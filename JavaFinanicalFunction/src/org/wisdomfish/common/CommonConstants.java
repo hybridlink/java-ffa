@@ -17,4 +17,9 @@ public interface CommonConstants {
      * 故在進行JFFA方法調用時, JFFA將於內部運算時封裝乘除本常數的轉換計算動作.
      */
     public static final double UN_RATE = 0.01;
+
+    /**
+     * String type number of JFFA Version.
+     */
+    public static final String VERSION = "0.1-Dev";
 }

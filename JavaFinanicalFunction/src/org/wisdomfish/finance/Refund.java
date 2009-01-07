@@ -12,8 +12,8 @@ public final class Refund {
     private Refund() {
     }
 
-    public static void IRR() {}
-    public static void MIRR() {}
-    public static void XIRR() {}
+    public static void irr() {}
+    public static void mirr() {}
+    public static void xirr() {}
 
 }

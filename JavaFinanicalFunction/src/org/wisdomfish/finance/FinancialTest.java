@@ -1,5 +1,7 @@
 package org.wisdomfish.finance;
 
+import org.wisdomfish.accounting.AnalysisOfSTRA;
+
 /**
  * @author  ChaoYi ,Kuo (Taiwan: 郭朝益)
  * @version 0.1-dev, 01-2009
@@ -11,6 +13,8 @@ class FinancialTest {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        System.out.println("AnalysisOfSTRA.currentRatio() = " + AnalysisOfSTRA.currentRatio(20000, 500000));
+
         System.out.println("Invest.EFFECT() = " + Invest.effect(5.25, 4));
         System.out.println("Invest.EFFECT() = " + Invest.effect(2, -2));
         System.out.println("Invest.NOMINAL() = " + Invest.nominal(5.3343, 4));
@@ -23,8 +27,9 @@ class FinancialTest {
         // Checking
         System.out.println("Invest.FV(2301.40) = " + Invest.fv(6 / 12, 12, -100, -1000, 1)); // 精確度不夠
 
-        System.out.println("Depreciation.SLN(2250.0) = " + Depreciation.SLN(30000, 7500, 10));
-        System.out.println("Depreciation.SYD(409.9) = " + Depreciation.SYD(30000, 7500, 10, 10));
+        System.out.println("Depreciation.SLN(2250.0) = " + Depreciation.sln(30000, 7500, 10));
+        System.out.println("Depreciation.SYD(409.9) = " + Depreciation.syd(30000, 7500, 10, 10));
 
+        System.out.println("pduration = " + Invest.pduration(10, 10, 100));
     }
 }

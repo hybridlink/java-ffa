@@ -23,7 +23,7 @@ public final class Depreciation implements CommonConstants {
      * @param   life    係指固定資產折舊的期間 (有時稱為固定資產的生命週期)
      * @return  回傳每期折舊金額。
      */
-    public static double SLN(double cost, double salvage, int life) {
+    public static double sln(double cost, double salvage, int life) {
         return (cost - salvage) / life;
     }
 
@@ -36,7 +36,7 @@ public final class Depreciation implements CommonConstants {
      * @param period    是您所要計算的期間，<= life。
      * @return          回傳每期折舊金額。
      */
-    public static double SYD(double cost, double salvage, int life, int period) {
+    public static double syd(double cost, double salvage, int life, int period) {
         if (period > life) {
             return ERROR_ARGS;
         } else {
