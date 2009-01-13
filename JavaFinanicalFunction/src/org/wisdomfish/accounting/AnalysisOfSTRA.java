@@ -13,7 +13,7 @@ package org.wisdomfish.accounting;
  * @version 0.1-dev, 2009-01
  * @author  ChaoYi, Kuo (Taiwan: 郭朝益)
  */
-public class AnalysisOfSTRA {
+public final class AnalysisOfSTRA {
 
     private AnalysisOfSTRA() {
     }
@@ -21,7 +21,8 @@ public class AnalysisOfSTRA {
     /**
      * 流動比率(Current Ratio)流動比率越高，表示短期償債能力越高；流動比率越低，則短期償債能力越低。.
      * 流動資產中的某些項目在變現時可能有貶值之虞，因此推論出流動比率應超過200%方屬理想，
-     * 但也不可一概而論。一般來說只有100%左右；而如低於100%以下，則表示短期償債能力過低，對債權人的權益，已缺乏保障。
+     * 但也不可一概而論。一般來說只有100%左右；而如低於100%以下，則表示短期償債能力過低，
+     * 對債權人的權益，已缺乏保障。
      * 
      * @param   currentAssets       流動資產
      * @param   currentLiability    流動負債
@@ -29,5 +30,20 @@ public class AnalysisOfSTRA {
      */
     public static double currentRatio(double currentAssets, double currentLiability) {
         return currentAssets / currentLiability * 100;
+    }
+
+    /**
+     * 速動比率(酸性測試(Acid)比率) = (流動資產-存貨-預付費用)/流動負債.
+     *
+     * <p>速動資產為流動資產扣除短期內較不易變現的流動資產，如存貨、預付費用 ...。
+     * 流動比率、速動比率皆為評估公司短期償債能力的重要指標，一般來說速動比率要大於1(100%)較佳，
+     * 但也需考慮行業特性必須與其相同類型的公司相比較，較為客觀。
+     * @param quickAssets
+     * @param currentLiablilty
+     * @return
+     * @see http://en.wikipedia.org/wiki/Quick_ratio
+     */
+    public static double quickRatio(double quickAssets, double currentLiablilty) {
+        return quickAssets / currentLiablilty * 100;
     }
 }
