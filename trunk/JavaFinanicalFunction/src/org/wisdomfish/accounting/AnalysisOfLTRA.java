@@ -11,7 +11,7 @@ package org.wisdomfish.accounting;
  * @version 0.1-dev, 2009-01
  * @author  ChaoYi, Kuo (Taiwan: 郭朝益)
  */
-public class AnalysisOfLTRA {
+public final class AnalysisOfLTRA {
 
     private AnalysisOfLTRA() {
     }
