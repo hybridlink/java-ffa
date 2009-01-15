@@ -38,9 +38,9 @@ public final class AnalysisOfSTRA {
      * <p>速動資產為流動資產扣除短期內較不易變現的流動資產，如存貨、預付費用 ...。
      * 流動比率、速動比率皆為評估公司短期償債能力的重要指標，一般來說速動比率要大於1(100%)較佳，
      * 但也需考慮行業特性必須與其相同類型的公司相比較，較為客觀。
-     * @param quickAssets
-     * @param currentLiablilty
-     * @return
+     * @param quickAssets 速動資產
+     * @param currentLiablilty 流動負債
+     * @return 回傳未包含"%"字元符的百分比數值
      * @see http://en.wikipedia.org/wiki/Quick_ratio
      */
     public static double quickRatio(double quickAssets, double currentLiablilty) {
