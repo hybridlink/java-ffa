@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.wisdomfish.xbrl;
+package org.wisdomfish.jffa.xbrl;
 
 /**
  * @version 0.1-dev, 01-2009

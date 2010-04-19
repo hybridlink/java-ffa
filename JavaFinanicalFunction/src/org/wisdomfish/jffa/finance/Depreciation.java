@@ -1,6 +1,6 @@
-package org.wisdomfish.finance;
+package org.wisdomfish.jffa.finance;
 
-import org.wisdomfish.common.CommonConstants;
+import org.wisdomfish.jffa.common.CommonConstants;
 
 /**
  * 提供固定資產折舊計算函數相關的函數類別.

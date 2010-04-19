@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.wisdomfish.accounting;
+package org.wisdomfish.jffa.accounting;
 
-import org.wisdomfish.finance.Depreciation;
+import org.wisdomfish.jffa.finance.Depreciation;
 
 /**
  * 折舊計算用函數, 包含來自 org.wisdomfish.finance.Depreciation　的方法Soft-Links.

@@ -1,11 +1,11 @@
-package org.wisdomfish.common;
+package org.wisdomfish.jffa.common;
 
 import java.util.GregorianCalendar;
 
 /**
  * 與日期計算有關的函數類別必須實作本介面.
  *
- * @version 0.1-dev, 2009-01
+ * @version 0.2-dev, 2010-04
  * @author  ChaoYi, Kuo (Taiwan: 郭朝益)
  */
 public interface DayCountBasis {

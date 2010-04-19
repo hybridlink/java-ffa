@@ -1,6 +1,6 @@
-package org.wisdomfish.finance;
+package org.wisdomfish.jffa.finance;
 
-import org.wisdomfish.accounting.AnalysisOfSTRA;
+import org.wisdomfish.jffa.accounting.AnalysisOfSTRA;
 
 /**
  * @author  ChaoYi ,Kuo (Taiwan: 郭朝益)
