@@ -1,4 +1,4 @@
-package org.wisdomfish.finance;
+package org.wisdomfish.jffa.finance;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package org.wisdomfish.finance;
+package org.wisdomfish.jffa.finance;
 
 /**
  * 提供償還率計算相關的函數類別.

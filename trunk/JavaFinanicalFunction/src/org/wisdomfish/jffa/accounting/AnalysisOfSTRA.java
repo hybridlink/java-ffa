@@ -1,4 +1,4 @@
-package org.wisdomfish.accounting;
+package org.wisdomfish.jffa.accounting;
 
 /**
  * 短期償債能力分析(Analysis of Short-Term Repayment Ability).

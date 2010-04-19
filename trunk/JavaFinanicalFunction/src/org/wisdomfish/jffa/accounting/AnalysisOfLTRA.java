@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.wisdomfish.accounting;
+package org.wisdomfish.jffa.accounting;
 
 /**
  * 長期償債能力分析(Analysis of Long-Term Repayment Ability).

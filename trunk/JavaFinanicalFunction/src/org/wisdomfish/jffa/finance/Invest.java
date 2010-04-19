@@ -1,8 +1,8 @@
-package org.wisdomfish.finance;
+package org.wisdomfish.jffa.finance;
 
 import java.util.GregorianCalendar;
-import org.wisdomfish.common.CommonConstants;
-import org.wisdomfish.common.DayCountBasis;
+import org.wisdomfish.jffa.common.CommonConstants;
+import org.wisdomfish.jffa.common.DayCountBasis;
 
 /**
  * 投資計算函數可分為與未來值FV有關，與付款PMT有關，與現值PV有關，
