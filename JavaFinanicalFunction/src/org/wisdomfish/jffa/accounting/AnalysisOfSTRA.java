@@ -38,7 +38,7 @@ public final class AnalysisOfSTRA {
     }
 
     /**
-     * 速動比率(酸性測試(Acid)比率) = (流動資產-存貨-預付費用)/流動負債.
+     * 速動比率(酸性測試(Acid)比率) = (流動資產-流動性差資產)/流動負債.
      *
      * <p>速動資產為流動資產扣除短期內較不易變現的流動資產，如存貨、預付費用 ...。
      * 流動比率、速動比率皆為評估公司短期償債能力的重要指標，一般來說速動比率要大於1(100%)較佳，
@@ -53,5 +53,19 @@ public final class AnalysisOfSTRA {
         BigDecimal qA = BigDecimal.valueOf(quickAssets);
         BigDecimal cL = BigDecimal.valueOf(currentLiablilty);
         return qA.divide(cL).multiply(CommonConstants.UN_RATE);
+    }
+
+    /**
+     * 現金比率(Cash Ratio)
+     *
+     * @param cash
+     * @param cashEquivalents
+     * @param currentAssets
+     * @return
+     */
+    public static BigDecimal cashRatio(double cash, double cashEquivalents, double currentAssets) {
+        BigDecimal asCash = BigDecimal.valueOf(cash).add(BigDecimal.valueOf(cashEquivalents));
+        BigDecimal cA = BigDecimal.valueOf(currentAssets);
+        return asCash.divide(cA);
     }
 }
