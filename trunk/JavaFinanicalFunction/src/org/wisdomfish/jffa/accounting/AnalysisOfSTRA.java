@@ -1,5 +1,8 @@
 package org.wisdomfish.jffa.accounting;
 
+import java.math.BigDecimal;
+import org.wisdomfish.jffa.common.CommonConstants;
+
 /**
  * 短期償債能力分析(Analysis of Short-Term Repayment Ability).
  * 是針對被分析公司的現金與短期內可以變現的各種資產，以及短期內到期而必須償還的各種負債，進行評估。
@@ -26,10 +29,12 @@ public final class AnalysisOfSTRA {
      * 
      * @param   currentAssets       流動資產
      * @param   currentLiability    流動負債
-     * @return  回傳未包含"%"字元符的百分比數值
+     * @return  回傳未包含"%"字元符的百分比浮點數值
      */
-    public static double currentRatio(double currentAssets, double currentLiability) {
-        return currentAssets / currentLiability * 100;
+    public static BigDecimal currentRatio(double currentAssets, double currentLiability) {
+        BigDecimal cA = BigDecimal.valueOf(currentAssets);
+        BigDecimal cL = BigDecimal.valueOf(currentLiability);
+        return cA.divide(cL).multiply(CommonConstants.UN_RATE);
     }
 
     /**
@@ -37,13 +42,16 @@ public final class AnalysisOfSTRA {
      *
      * <p>速動資產為流動資產扣除短期內較不易變現的流動資產，如存貨、預付費用 ...。
      * 流動比率、速動比率皆為評估公司短期償債能力的重要指標，一般來說速動比率要大於1(100%)較佳，
-     * 但也需考慮行業特性必須與其相同類型的公司相比較，較為客觀。
+     * 但也需考慮行業特性必須與其相同類型的公司相比較，較為客觀。</p>
+     * 
      * @param quickAssets 速動資產
      * @param currentLiablilty 流動負債
      * @return 回傳未包含"%"字元符的百分比數值
      * @see http://en.wikipedia.org/wiki/Quick_ratio
      */
-    public static double quickRatio(double quickAssets, double currentLiablilty) {
-        return quickAssets / currentLiablilty * 100;
+    public static BigDecimal quickRatio(double quickAssets, double currentLiablilty) {
+        BigDecimal qA = BigDecimal.valueOf(quickAssets);
+        BigDecimal cL = BigDecimal.valueOf(currentLiablilty);
+        return qA.divide(cL).multiply(CommonConstants.UN_RATE);
     }
 }
