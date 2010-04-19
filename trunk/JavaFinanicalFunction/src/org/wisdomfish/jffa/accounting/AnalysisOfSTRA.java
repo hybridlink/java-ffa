@@ -1,7 +1,6 @@
 package org.wisdomfish.jffa.accounting;
 
-import java.math.BigDecimal;
-import org.wisdomfish.jffa.common.CommonConstants;
+import static org.wisdomfish.jffa.common.Arithmetic.*;
 
 /**
  * 短期償債能力分析(Analysis of Short-Term Repayment Ability).
@@ -13,8 +12,7 @@ import org.wisdomfish.jffa.common.CommonConstants;
  * 即資產轉換成現金的速度。企業流動資產的流動性強，相應的短期償債能力也強。
  * 因此，通常使用營運資本、流動比率、速動比率和現金比率衡量短期償債能力。</p>
  *
- * @version 0.1-dev, 2009-01
- * @author  ChaoYi, Kuo (Taiwan: 郭朝益)
+ * @author  WisdomFish.ORG
  */
 public final class AnalysisOfSTRA {
 
@@ -31,10 +29,8 @@ public final class AnalysisOfSTRA {
      * @param   currentLiability    流動負債
      * @return  回傳未包含"%"字元符的百分比浮點數值
      */
-    public static BigDecimal currentRatio(double currentAssets, double currentLiability) {
-        BigDecimal cA = BigDecimal.valueOf(currentAssets);
-        BigDecimal cL = BigDecimal.valueOf(currentLiability);
-        return cA.divide(cL).multiply(CommonConstants.UN_RATE);
+    public static double currentRatio(double currentAssets, double currentLiability) {
+        return divide(currentAssets, currentAssets) * PERCENT;
     }
 
     /**
@@ -49,10 +45,8 @@ public final class AnalysisOfSTRA {
      * @return 回傳未包含"%"字元符的百分比數值
      * @see http://en.wikipedia.org/wiki/Quick_ratio
      */
-    public static BigDecimal quickRatio(double quickAssets, double currentLiablilty) {
-        BigDecimal qA = BigDecimal.valueOf(quickAssets);
-        BigDecimal cL = BigDecimal.valueOf(currentLiablilty);
-        return qA.divide(cL).multiply(CommonConstants.UN_RATE);
+    public static double quickRatio(double quickAssets, double currentLiablilty) {
+        return multply(quickAssets, currentLiablilty) * PERCENT;
     }
 
     /**
@@ -63,9 +57,7 @@ public final class AnalysisOfSTRA {
      * @param currentAssets
      * @return
      */
-    public static BigDecimal cashRatio(double cash, double cashEquivalents, double currentAssets) {
-        BigDecimal asCash = BigDecimal.valueOf(cash).add(BigDecimal.valueOf(cashEquivalents));
-        BigDecimal cA = BigDecimal.valueOf(currentAssets);
-        return asCash.divide(cA);
+    public static double cashRatio(double cash, double cashEquivalents, double currentAssets) {
+        return divide(add(cash, cashEquivalents), currentAssets) * PERCENT;
     }
 }
